@@ -1,0 +1,58 @@
+function About() {
+    return(
+        <section className="section" id="about">
+        <div className="container">
+          <div className="row">
+            <div className="col-lg-6 col-md-6 col-xs-12">
+              <div className="left-text-content">
+                <div className="section-heading">
+                  <h6>About Us</h6>
+                  <h2>We work with top brands and startups</h2>
+                </div>
+                <div className="row">
+                  <div className="col-md-6 col-sm-6">
+                    <div className="service-item">
+                      <img src="assets/images/service-item-01.png" alt="" />
+                      <h4>Top Notch</h4>
+                    </div>
+                  </div>
+                  <div className="col-md-6 col-sm-6">
+                    <div className="service-item">
+                      <img src="assets/images/service-item-01.png" alt="" />
+                      <h4>Robust</h4>
+                    </div>
+                  </div>
+                  <div className="col-md-6 col-sm-6">
+                    <div className="service-item">
+                      <img src="assets/images/contact-info-03.png" alt="" />
+                      <h4>Reliable</h4>
+                    </div>
+                  </div>
+                  <div className="col-md-6 col-sm-6">
+                    <div className="service-item">
+                      <img src="assets/images/contact-info-03.png" alt="" />
+                      <h4>Up-to-date</h4>
+                    </div>
+                  </div>
+                  <div className="col-md-12">
+                    <a href="/#" className="main-button-icon">
+                      Learn More <i className="fa fa-arrow-right"></i>
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div className="col-lg-6 col-md-6 col-xs-12">
+              <div className="right-text-content">
+                <p><a rel="nofollow noopener" href="https://templatemo.com/tm-543-breezed" target="_parent">Breezed HTML Template</a> is provided by TemplateMo for absolutely free of charge. You can download, edit and use this for your non-commercial and commercial websites.
+                  <br /><br />Redistributing this template as a downloadable ZIP file on any template collection website is strictly prohibited. You will need to talk to us if you want to redistribute this template. Thank you.
+                  <br /><br />This is a Bootstrap v4.3.1 CSS layout. Do you like it? You can feel free to <a rel="nofollow noopener" href="https://templatemo.com/contact" target="_parent">talk to us</a> if you have anything.</p>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    );
+}
+
+export default About;
