@@ -14,22 +14,24 @@ import Details from './components/Details/Details';
 
 import './App.css';
 
+const initialAuthState = {
+    _id: '',
+    email: '',
+    accessToken: '',
+};
+
 function App() {
-    const [user, setUser] = useLocalStorage('user', {
-        _id: '',
-        email: '',
-        accessToken: '',
-    });
+    const [user, setUser] = useLocalStorage('user', initialAuthState);
     const login = (authData) => {
         setUser(authData);
     };
 
-    const onLogout = () => {
-        // TODO: implement
+    const logout = () => {
+        setUser(initialAuthState);
     };
 
     return (
-        <AuthContext.Provider value={{ user, login }}>
+        <AuthContext.Provider value={{ user, login, logout }}>
             <div id="container">
                 <Header email={user.email} />
 

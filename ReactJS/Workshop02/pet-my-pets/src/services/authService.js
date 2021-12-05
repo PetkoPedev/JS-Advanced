@@ -28,8 +28,12 @@ export const register = async (email, password) => {
     .then(res => res.json());
 }
 
-export const logout = () => {
-    fetch(`${baseUrl}/users/logout`)
+export const logout = (token) => {
+    return fetch(`${baseUrl}/users/logout`, {
+        headers: {
+            'X-Authorization': token,
+        }
+    })
 }
 
 export const getUser = () => {
