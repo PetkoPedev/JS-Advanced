@@ -1,8 +1,12 @@
+import { useContext } from 'react';
 import { useNavigate } from 'react-router-dom';
 import * as petService from '../../services/petService';
+import { AuthContext } from '../../contexts/AuthContext.js';
 
 export default function CreatePage() {
+    const {user} = useContext(AuthContext);
     const navigate = useNavigate();
+    
     const onPetCreate = (e) => {
         e.preventDefault();
         let formData = new FormData(e.currentTarget);
@@ -15,8 +19,8 @@ export default function CreatePage() {
             name,
             description,
             imageUrl,
-            type
-        })
+            type,
+        }, user.accessToken)
         .then(result => {
             navigate('/dashboard');
         })

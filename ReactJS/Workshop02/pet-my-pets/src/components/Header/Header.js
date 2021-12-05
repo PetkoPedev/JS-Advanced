@@ -1,9 +1,10 @@
+import { useContext } from 'react';
 import { Link } from 'react-router-dom';
 
-export default function Header({
-    isAuthenticated,
-    user,
-}) {
+import { AuthContext } from '../../contexts/AuthContext.js';
+
+export default function Header() {
+    const { user } = useContext(AuthContext);
     let guestNavigation = (
         <div id="guest">
             <Link className="button" to="/login">Login</Link>
@@ -13,7 +14,7 @@ export default function Header({
 
     let userNavigation = (
         <div id="user">
-            <span>Welcome, {user}</span>
+            <span>Welcome, {user.email}</span>
             <Link className="button" to="/my-pets">My Pets</Link>
             <Link className="button" to="/create">Add Pet</Link>
             <Link className="button" to="/logout">Logout</Link>
@@ -25,8 +26,7 @@ export default function Header({
             <nav className="navbar">
                 <section className="navbar-dashboard">
                     <Link to="/dashboard">Dashboard</Link>
-
-                    {isAuthenticated
+                    {user.email
                         ? userNavigation
                         : guestNavigation
                     }
