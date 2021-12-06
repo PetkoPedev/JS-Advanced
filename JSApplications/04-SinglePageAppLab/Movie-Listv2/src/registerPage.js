@@ -1,4 +1,4 @@
-import {saveToken} from './auth.js';
+import { saveToken } from './auth.js';
 import moviesPage from './moviesPage.js';
 import navigation from './navigation.js';
 
@@ -8,7 +8,7 @@ let registerForm = registerSection.querySelector('#register-form');
 
 registerForm.addEventListener('submit', (e) => {
     e.preventDefault();
-    
+
     let data = new FormData(registerForm);
 
     fetch(`${baseUrl}/users/register`, {
@@ -21,17 +21,17 @@ registerForm.addEventListener('submit', (e) => {
             password: data.get('password')
         })
     })
-    .then(res => res.json())
-    .then(responseData => {
-        console.log(responseData);
-        saveToken(responseData.accessToken);
-        hidePage();
-        moviesPage.showPage();
-        navigation.updateNavigation();
-    })
+        .then(res => res.json())
+        .then(responseData => {
+            console.log(responseData);
+            saveToken(responseData.accessToken);
+            hidePage();
+            moviesPage.showPage();
+            navigation.updateNavigation();
+        })
 })
 
-function showPage(){
+function showPage() {
     registerSection.classList.remove('hidden');
 }
 

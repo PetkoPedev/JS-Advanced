@@ -1,7 +1,7 @@
 import { isAuthenticated } from './auth.js';
 
 function updateNavigation(){
-    if (isAuthenticated) {
+    if (isAuthenticated()) {
         let guestNavItems = document.getElementsByClassName('guest');
     
         for (const navItem of guestNavItems) {
@@ -10,4 +10,6 @@ function updateNavigation(){
     }
 }
 
-export default updateNavigation();
+export default {
+    updateNavigation
+}
