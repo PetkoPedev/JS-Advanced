@@ -20,11 +20,16 @@ function renderMovies(movies){
     let movieListElement = document.createDocumentFragment();
     for (const movie of movies) {
         console.log(movie);
+        
         let currentMovieElement = movieTemplate.cloneNode(true);
         currentMovieElement.classList.remove('hidden');
         currentMovieElement.removeAttribute('id');
+        
         let titleElement = currentMovieElement.querySelector('.card-title');
         titleElement.textContent = movie.title;
+
+        let descriptionElement = currentMovieElement.querySelector('.card-text');
+        descriptionElement.textContent = movie.description;
 
         movieListElement.appendChild(currentMovieElement);
     }
