@@ -1,5 +1,5 @@
 import { saveToken } from './auth.js';
-import moviesPage from './moviesPage.js';
+import moviesPage from './pages/moviesPage.js';
 import navigation from './navigation.js';
 
 let baseUrl = 'http://localhost:3030';
