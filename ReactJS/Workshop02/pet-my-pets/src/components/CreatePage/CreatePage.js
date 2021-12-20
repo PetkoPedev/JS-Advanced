@@ -27,7 +27,7 @@ export default function CreatePage() {
     }
     return (
         <section id="create-page" className="create">
-            <form id="create-form" onSubmit={onPetCreate} method="Post">
+            <form id="create-form" onSubmit={onPetCreate} method="post">
                 <fieldset>
                     <legend>Add new Pet</legend>
                     <p className="field">

@@ -10,18 +10,18 @@ export default function Details() {
     let { petId } = useParams();
     useEffect(() => {
         petService.getOne(petId)
-        .then(petResult => {
-            setPet(petResult);
-        })
+            .then(petResult => {
+                setPet(petResult);
+            })
     }, [petId]);
 
     const deleteHandler = (e) => {
         e.preventDefault();
 
         petService.remove(petId, user.accessToken)
-        .then(() => {
-            navigate('/dashboard');
-        });
+            .then(() => {
+                navigate('/dashboard');
+            });
     };
 
     const ownerButtons = (
@@ -47,7 +47,7 @@ export default function Details() {
 
                     <div className="likes">
                         <img className="hearts" src="/images/heart.png" />
-                        <span id="total-likes">Likes: {pet.likes}</span>
+                        <span id="total-likes">Likes: {pet.likes?.length}</span>
                     </div>
 
                 </div>

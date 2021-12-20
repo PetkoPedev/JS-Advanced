@@ -33,7 +33,7 @@ function App() {
     return (
         <AuthContext.Provider value={{ user, login, logout }}>
             <div id="container">
-                <Header email={user.email} />
+                <Header />
 
                 <main id="site-content">
                     <Routes>

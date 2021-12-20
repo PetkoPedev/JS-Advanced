@@ -26,7 +26,7 @@ export const register = async (email, password) => {
         body: JSON.stringify({ email, password })
     })
     .then(res => res.json());
-}
+};
 
 export const logout = (token) => {
     return fetch(`${baseUrl}/users/logout`, {

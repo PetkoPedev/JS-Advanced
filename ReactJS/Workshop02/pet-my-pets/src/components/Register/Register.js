@@ -16,7 +16,7 @@ export default function Register() {
             .then(authData => {
                 login(authData);
                 navigate('/dashboard');
-            })
+            });
     }
     return (
         <section id="register-page" className="register">

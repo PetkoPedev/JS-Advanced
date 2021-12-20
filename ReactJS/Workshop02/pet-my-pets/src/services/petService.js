@@ -5,7 +5,7 @@ export const getAll = async () => {
     let pets = await response.json();
 
     let result = Object.values(pets);
-    return result;;
+    return result;
 }
 
 export const create = async (petData, token) => {
@@ -15,7 +15,7 @@ export const create = async (petData, token) => {
             'content-type': 'application/json',
             'X-Authorization': token,
         },
-        body: JSON.stringify({ petData, likes: [] })
+        body: JSON.stringify({...petData, likes: [] })
     });
 
     let result = await response.json();
