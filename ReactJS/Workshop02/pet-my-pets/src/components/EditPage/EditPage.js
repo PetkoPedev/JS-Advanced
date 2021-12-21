@@ -1,37 +1,64 @@
+import { useParams } from 'react-router-dom';
+import * as petService from '../../services/petService.js';
+import usePetState from '../../hooks/usePetState.js';
+import { useState } from 'react';
+import { Alert } from 'react-bootstrap';
+
+const types = [
+    {value: 'cat', text: 'Cat'},
+    {value: 'dog', text: 'Dog'},
+    {value: 'parrot', text: 'Parrot'},
+    {value: 'reptile', text: 'Reptile'},
+    {value: 'other', text: 'Other'}
+]
+
 export default function EditPage() {
+    const { petId } = useParams();
+    const[pet] = usePetState(petId);
+    const [errors, setErrors] = useState({errorName: false});
+    
+    const petEditSubmitHandler = (e) => {
+        e.preventDEfault();
+    }
+
+    const onNameChangeHandler = (e) => {
+        let currentName = e.target.value;
+        if(currentName.length < 3 || currentName.length >= 10){
+            setErrors(state => ({...state, errorName: 'Your name should be at least 3 characters or maximum 10.'}));
+        } else {
+            setErrors(state => ({...state, errorName: false}));
+        }
+    }
     return (
         <section id="edit-page" className="edit">
-            <form id="edit-form" action="#" method="">
+            <form id="edit-form" method="POST" onSubmit={petEditSubmitHandler}>
                 <fieldset>
                     <legend>Edit my Pet</legend>
                     <p className="field">
                         <label htmlFor="name">Name</label>
-                        <span className="input">
-                            <input type="text" name="name" id="name" value="Milo" />
+                        <span className="input" style={{borderColor: errors.errorName ? 'red' : 'inherit'}}>
+                            <input type="text" name="name" id="name" defaultValue={pet.name} onChange={onNameChangeHandler} />
                         </span>
+                        <Alert variant="danger" show={errors.errorName}>{errors.errorName}</Alert>
                     </p>
                     <p className="field">
                         <label htmlFor="description">Description</label>
                         <span className="input">
                             <textarea name="description"
-                                id="description">Today, some dogs are used as pets, others are used to help humans do their work. They are a popular pet because they are usually playful, friendly, loyal and listen to humans. Thirty million dogs in the United States are registered as pets.[5] Dogs eat both meat and vegetables, often mixed together and sold in stores as dog food. Dogs often have jobs, including as police dogs, army dogs, assistance dogs, fire dogs, messenger dogs, hunting dogs, herding dogs, or rescue dogs.</textarea>
+                                id="description" defaultValue={pet.description}></textarea>
                         </span>
                     </p>
                     <p className="field">
                         <label htmlFor="image">Image</label>
                         <span className="input">
-                            <input type="text" name="imageUrl" id="image" value="/images/dog.png" />
+                            <input type="text" name="imageUrl" id="image" defaultValue={pet.imageUrl} />
                         </span>
                     </p>
                     <p className="field">
                         <label htmlFor="type">Type</label>
                         <span className="input">
-                            <select id="type" name="type" value="dog">
-                                <option value="cat" >Cat</option>
-                                <option value="dog" selected>Dog</option>
-                                <option value="parrot">Parrot</option>
-                                <option value="reptile">Reptile</option>
-                                <option value="other">Other</option>
+                            <select id="type" name="type" >
+                                {types.map(x => <option key={x.value} selected={pet.type == x.value}>{x.text}</option>)}
                             </select>
                         </span>
                     </p>

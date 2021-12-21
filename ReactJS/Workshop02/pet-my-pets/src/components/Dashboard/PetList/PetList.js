@@ -4,10 +4,15 @@ import * as petService from '../../../services/petService';
 
 export default function PetList() {
     const [pets, setPets] = useState([]);
+    
     useEffect(() => {
         petService.getAll()
             .then(result => {
+                console.log(result);
                 setPets(result);
+            })
+            .catch(err => {
+                console.log(err);
             })
     }, []);
     return (
@@ -17,7 +22,8 @@ export default function PetList() {
                     <ul className="other-pets-list">
                         {pets.map(x => <PetCard key={x._id} pet={x} />)}
                     </ul>
-                ) : <p className="no-pets">No pets in database!</p>
+                ) 
+                : <p className="no-pets">No pets in database!</p>
             }
         </>
     );
