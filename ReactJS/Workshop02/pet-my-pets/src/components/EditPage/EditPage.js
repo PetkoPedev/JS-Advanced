@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import * as petService from '../../services/petService.js';
 import usePetState from '../../hooks/usePetState.js';
 import { useState } from 'react';
@@ -14,11 +14,17 @@ const types = [
 
 export default function EditPage() {
     const { petId } = useParams();
-    const[pet] = usePetState(petId);
     const [errors, setErrors] = useState({errorName: false});
+    const[pet, setPet] = usePetState(petId);
+    const navigate = useNavigate();
     
     const petEditSubmitHandler = (e) => {
-        e.preventDEfault();
+        e.preventDefault();
+
+        let petData = Object.fromEntries(new FormData(e.currentTarget));
+
+        petService.update(pet._id, petData);
+        navigate('/dashboard');
     }
 
     const onNameChangeHandler = (e) => {
@@ -57,8 +63,8 @@ export default function EditPage() {
                     <p className="field">
                         <label htmlFor="type">Type</label>
                         <span className="input">
-                            <select id="type" name="type" >
-                                {types.map(x => <option key={x.value} selected={pet.type == x.value}>{x.text}</option>)}
+                        <select id="type" name="type" value={pet.type} onChange={(e) => setPet(s => ({...s, type: e.target.value}))}>
+                        {types.map(x => <option key={x.value} value={x.value}>{x.text}</option>)}
                             </select>
                         </span>
                     </p>
